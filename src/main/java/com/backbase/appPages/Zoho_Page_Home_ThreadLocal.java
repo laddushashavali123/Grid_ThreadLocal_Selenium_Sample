@@ -38,23 +38,15 @@ public class Zoho_Page_Home_ThreadLocal extends BaseSetUp_Grid{
 	
 	//@FindBy(xpath = "//a[contains(text(),'XYZ')]")
 	//public static WebElement lnk_sampleApp;
-
-
-	
-	public void verifyHomePage(String bName1)
-    {
-        try
-        {          
+	public void verifyHomePage(String bName1){
+        try {
         	isEventSuccessful=genericUtil_Obj.verifyLinkDisplay(lnk_sampleApp, "Play");
         	Assert.assertTrue(isEventSuccessful);        	
             System.out.println("Home Page is displayed successfully");
             reportPass("Home Page is displayed successfully");
             addLog("Home Page is displayed successfully" + bName1,bName1);
            passInfo("Home Page is displayed successfully" + bName1);
-                    
-        }
-        catch(AssertionError | Exception e)
-        {
+        }catch(AssertionError | Exception e){
         		ErrorCollector.addVerificationFailure(e);
         		//logger.info("--------Home Page is not displayed-----------------");
         		//logger.info(e.getMessage());

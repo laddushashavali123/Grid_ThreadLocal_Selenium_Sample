@@ -18,12 +18,12 @@ import com.zoho.baseSetUp.BaseSetUp_Grid;
 public class ExtentManager extends BaseSetUp_Grid{
     
     public static ExtentReports extent;
-    
+    public static String screenshotPath;
+    public static String screenshotName;
     public static ExtentReports getInstance() {
     	if (extent == null)
     		createInstance("test-output/extent.html");
-    	
-        return extent;
+    	return extent;
     }
     
     public static ExtentReports createInstance(String fileName) {
@@ -34,18 +34,11 @@ public class ExtentManager extends BaseSetUp_Grid{
         htmlReporter.config().setDocumentTitle(fileName);
         htmlReporter.config().setEncoding("utf-8");
         htmlReporter.config().setReportName(fileName);
-        
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
-        
         return extent;
     }
-    public static String screenshotPath;
-	public static String screenshotName;
-	
-	
     public void captureScreenshot()  {
-
 		File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 		Date d = new Date();
 		screenshotName = d.toString().replace(":", "_").replace(" ", "_") + ".jpg";

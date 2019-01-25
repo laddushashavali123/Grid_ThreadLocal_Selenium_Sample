@@ -24,51 +24,46 @@ import com.zoho.utilities.TestUtil;
 
 @Test
 public class TC_01_Zoho_HomePage_Verification_Thread_Local extends BaseSetUp_Grid {
-	String methodName=null;
-	ActionAfterTest actionAfterTest=new ActionAfterTest();
-	Zoho_Page_Home_ThreadLocal homePgObj_td;	
-	WebDriver driver2;
-	String bName=null;
-	
-	@BeforeMethod()
-	@Parameters({"browserType"})
-	public void getMethodName(Method method,String browserType)
-	{
-		bName=browserType;
-		if(!TestUtil.isSuiteRunnable("LoginSuite", mstrSuite)){
-			throw new SkipException("Skipping the suite as run mode is NO");
-		}
-	
-		if(!TestUtil.isTestRunnable(method.getName(), excel)){
-				throw new SkipException("Skipping the test " + method.getName().toUpperCase()+ "as run mode is NO");
-		}
-		 System.out.println("Starting " + method.getName() + "test case" );		
-		 test=rep.startTest("Verify App Home Page" + "_" + bName);
-		 setExtentTest(test);
-		 initializeTestBaseSetup3(bName);
-	}
-	
-	@Test(dataProviderClass=DataProviderRep_HashMap.class,dataProvider="newComputerData10",priority=1)
-	@Parameters({"browserType"})
-	public void TC_01_Verify_App_Home_Page_Thread_Local(Map <String,String> data) throws ParseException, InterruptedException, InvocationTargetException
-	{	
-		logInfo("Starting the test for ");
-		homePgObj_td= new Zoho_Page_Home_ThreadLocal(getDriver());
-		homePgObj_td.verifyHomePage(bName);
-	}
+    /*
+        String methodName=null;
+    */
+    ActionAfterTest actionAfterTest = new ActionAfterTest();
+    Zoho_Page_Home_ThreadLocal homePgObj_td;
+    WebDriver driver2;
+    String bName = null;
 
-	@AfterMethod
-	   public void afterEachTest(ITestResult result) throws InterruptedException {
-	        try
-	        {
-	        	System.out.println("Inside After Method of test case");
-	            actionAfterTest.testCaseReportUp();
-	        }
+    @BeforeMethod()
+    @Parameters({"browserType"})
+    public void getMethodName(Method method, String browserType) {
+        bName = browserType;
+        if (!TestUtil.isSuiteRunnable("LoginSuite", mstrSuite)) {
+            throw new SkipException("Skipping the suite as run mode is NO");
+        }
+        if (!TestUtil.isTestRunnable(method.getName(), excel)) {
+            throw new SkipException("Skipping the test " + method.getName().toUpperCase() + "as run mode is NO");
+        }
+        System.out.println("Starting " + method.getName() + "test case");
+        test = rep.startTest("Verify App Home Page" + "_" + bName);
+        setExtentTest(test);
+        initializeTestBaseSetup3(bName);
+    }
 
-	        catch (Exception e)
-	        {
-	            System.out.println("Excpetion is " + e.getMessage());
-	        }
-		}
+    @Test(dataProviderClass = DataProviderRep_HashMap.class, dataProvider = "newComputerData10", priority = 1)
+    @Parameters({"browserType"})
+    public void TC_01_Verify_App_Home_Page_Thread_Local(Map<String, String> data) throws ParseException, InterruptedException, InvocationTargetException {
+        logInfo("Starting the test for ");
+        homePgObj_td = new Zoho_Page_Home_ThreadLocal(getDriver());
+        homePgObj_td.verifyHomePage(bName);
+    }
+
+    @AfterMethod
+    public void afterEachTest(ITestResult result) throws InterruptedException {
+        try {
+            System.out.println("Inside After Method of test case");
+            actionAfterTest.testCaseReportUp();
+        } catch (Exception e) {
+            System.out.println("Excpetion is " + e.getMessage());
+        }
+    }
 
 }
